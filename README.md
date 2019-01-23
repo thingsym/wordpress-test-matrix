@@ -1,16 +1,19 @@
 # WordPress Test Matrix
 
-Operation compatibility between PHP versions and WordPress versions
+Testing compatibility between PHP versions and WordPress versions.
 
 ## Continuous integration and delivery platform
 
-### Travis CI
+* .travis.yml - [Travis CI](https://travis-ci.com/)
 
-.travis.yml
+## Unit Test Framework configuration and Lint ruleset
 
-## Target
+A collection of Unit Test Framework configuration and Lint ruleset for developing WordPress theme/plugin
 
-* Plugins
+* phpunit.xml - [PHPUnit](https://phpunit.de/)
+* phpcs.ruleset.xml - [PHP_CodeSniffer (phpcs)](https://github.com/squizlabs/PHP_CodeSniffer)
+* phpmd.ruleset.xml - [PHPMD - PHP Mess Detector](https://phpmd.org/)
+* phpstan.neon - [PHPStan - PHP Static Analysis Tool](https://github.com/phpstan/phpstan)
 
 ## License
 
