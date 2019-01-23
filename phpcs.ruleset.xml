@@ -28,4 +28,5 @@
   </rule>
 
   <exclude-pattern>*/tests/*</exclude-pattern>
+  <exclude-pattern>*/vendor/*</exclude-pattern>
 </ruleset>
