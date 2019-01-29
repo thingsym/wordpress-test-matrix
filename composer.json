@@ -11,7 +11,8 @@
   },
   "scripts": {
     "phpcs:config-set": "phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs",
-    "phpcs": "phpcs -p -s -v ./ --standard=./phpcs.ruleset.xml --extensions=php",
+    "phpcs": "phpcs -p -s -v -n ./ --standard=./phpcs.ruleset.xml --extensions=php",
+    "phpcs:warning": "phpcs -p -s -v ./ --standard=./phpcs.ruleset.xml --extensions=php",
     "phpcbf": "phpcbf -p -s -v ./ --standard=./phpcs.ruleset.xml --extensions=php",
     "phpmd": "phpmd ./ text ./phpmd.ruleset.xml --suffixes php --exclude /tests,/vendor",
     "phpstan": "phpstan analyse",
