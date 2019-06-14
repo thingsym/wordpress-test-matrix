@@ -114,6 +114,14 @@ matrix:
       dist: precise
       env: WP_VERSION=3.7 WP_MULTISITE=0
   allow_failures:
+    - php: 7.3
+      env: WP_VERSION=4.2 WP_MULTISITE=0
+    - php: 7.3
+      env: WP_VERSION=4.1 WP_MULTISITE=0
+    - php: 7.3
+      env: WP_VERSION=4.0 WP_MULTISITE=0
+    - php: 7.3
+      env: WP_VERSION=3.9 WP_MULTISITE=0
     - php: 7.2
       env: WP_VERSION=4.2 WP_MULTISITE=0
     - php: 7.2
