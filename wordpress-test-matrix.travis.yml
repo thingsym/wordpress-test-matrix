@@ -35,18 +35,13 @@ env:
   - WP_VERSION=5.0 WP_MULTISITE=1
   - WP_VERSION=4.9 WP_MULTISITE=0
   - WP_VERSION=4.9 WP_MULTISITE=1
-  - WP_VERSION=4.8 WP_MULTISITE=0
-  - WP_VERSION=4.8 WP_MULTISITE=1
-  - WP_VERSION=4.7 WP_MULTISITE=0
-  - WP_VERSION=4.7 WP_MULTISITE=1
-  - WP_VERSION=4.6 WP_MULTISITE=0
-  - WP_VERSION=4.6 WP_MULTISITE=1
-  - WP_VERSION=4.5 WP_MULTISITE=0
-  - WP_VERSION=4.5 WP_MULTISITE=1
-  - WP_VERSION=4.4 WP_MULTISITE=0
-  - WP_VERSION=4.4 WP_MULTISITE=1
   - WP_VERSION=nightly WP_MULTISITE=0
   - WP_VERSION=nightly WP_MULTISITE=1
+  - WP_VERSION=4.8 WP_MULTISITE=0
+  - WP_VERSION=4.7 WP_MULTISITE=0
+  - WP_VERSION=4.6 WP_MULTISITE=0
+  - WP_VERSION=4.5 WP_MULTISITE=0
+  - WP_VERSION=4.4 WP_MULTISITE=0
   - WP_VERSION=4.3 WP_MULTISITE=0
   - WP_VERSION=4.2 WP_MULTISITE=0
   - WP_VERSION=4.1 WP_MULTISITE=0
@@ -78,40 +73,25 @@ matrix:
       env: WP_VERSION=4.9 WP_MULTISITE=1
     - php: 5.3
       dist: precise
-      env: WP_VERSION=4.8 WP_MULTISITE=0
+      env: WP_VERSION=nightly WP_MULTISITE=0
     - php: 5.3
       dist: precise
-      env: WP_VERSION=4.8 WP_MULTISITE=1
+      env: WP_VERSION=nightly WP_MULTISITE=1
+    - php: 5.3
+      dist: precise
+      env: WP_VERSION=4.8 WP_MULTISITE=0
     - php: 5.3
       dist: precise
       env: WP_VERSION=4.7 WP_MULTISITE=0
     - php: 5.3
       dist: precise
-      env: WP_VERSION=4.7 WP_MULTISITE=1
-    - php: 5.3
-      dist: precise
       env: WP_VERSION=4.6 WP_MULTISITE=0
-    - php: 5.3
-      dist: precise
-      env: WP_VERSION=4.6 WP_MULTISITE=1
     - php: 5.3
       dist: precise
       env: WP_VERSION=4.5 WP_MULTISITE=0
     - php: 5.3
       dist: precise
-      env: WP_VERSION=4.5 WP_MULTISITE=1
-    - php: 5.3
-      dist: precise
       env: WP_VERSION=4.4 WP_MULTISITE=0
-    - php: 5.3
-      dist: precise
-      env: WP_VERSION=4.4 WP_MULTISITE=1
-    - php: 5.3
-      dist: precise
-      env: WP_VERSION=nightly WP_MULTISITE=0
-    - php: 5.3
-      dist: precise
-      env: WP_VERSION=nightly WP_MULTISITE=1
     - php: 5.3
       dist: precise
       env: WP_VERSION=4.3 WP_MULTISITE=0
