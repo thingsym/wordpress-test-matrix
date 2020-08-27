@@ -25,13 +25,14 @@
     You can hard-code ignore patterns directly into your
     custom standard so you don't have to specify the
     patterns on the command line.
-    
+
     The following two tags are equivalent to the command line argument:
     \-\-ignore=*/tests/*,*/data/*
   -->
 
   <exclude-pattern>*/tests/*</exclude-pattern>
   <exclude-pattern>*/vendor/*</exclude-pattern>
+  <exclude-pattern>*/node_modules/*</exclude-pattern>
 
   <!-- Annotated Ruleset https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-Ruleset -->
   <arg name="extensions" value="php"/>
@@ -39,12 +40,12 @@
   <arg value="sp"/>
 
   <!-- Include the WordPress ruleset, with exclusions. -->
-	<rule ref="WordPress.WP.I18n">
-		<properties>
-			<!-- Value: replace the text domain used. -->
-			<property name="text_domain" type="array" value="your-theme-or-plugin-text-domain" />
-		</properties>
-	</rule>
+  <rule ref="WordPress.WP.I18n">
+    <properties>
+      <!-- Value: replace the text domain used. -->
+      <property name="text_domain" type="array" value="your-theme-or-plugin-text-domain" />
+    </properties>
+  </rule>
 
   <rule ref="WordPress">
     <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace" />
