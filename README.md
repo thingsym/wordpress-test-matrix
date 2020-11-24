@@ -4,7 +4,16 @@ Testing compatibility between PHP versions and WordPress versions.
 
 ## Continuous integration and delivery platform
 
-* .travis.yml - [Travis CI](https://travis-ci.com/)
+### GitHub Actions
+
+* wp-plugin-unit-test.yml
+* wp-theme-unit-test.yml
+* wp-plugin-deploy.yml
+* wp-plugin-trunk.yml
+
+### Travis CI (Deprecated)
+
+* .travis.yml
 
 Note: With Travis CI, all build matrixes are currently limited to a maximum of **200** jobs. See [Travis CI Doc - Build Matrix](https://docs.travis-ci.com/user/build-matrix/)
 
