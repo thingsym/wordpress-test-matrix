@@ -327,7 +327,7 @@ before_script:
   - |
     if [[ ${TRAVIS_PHP_VERSION:0:2} == "7." ]] && [[ "$WP_VERSION" < 4.6* ]] ; then
       composer global require "phpunit/phpunit=5.7.*"
-    elif [[ ${TRAVIS_PHP_VERSION:0:2} == "7." ]] && [[ "$WP_VERSION" < 5.0* ]]  ; then
+    elif [[ ${TRAVIS_PHP_VERSION:0:2} == "7." ]] && [[ "$WP_VERSION" < 5.0* ]] ; then
       composer global require "phpunit/phpunit=6.*"
     else
       composer global require "phpunit/phpunit=4.8.*|5.4.*|6.*|7.*"
