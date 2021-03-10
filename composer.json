@@ -22,7 +22,6 @@
     "phpstan": "phpstan analyse",
     "phpunit": "phpunit",
     "coverage": "phpunit --coverage-html ./tests/report",
-    "compat": "phpcs -p ./ --standard=PHPCompatibilityWP --extensions=php",
     "ci": [
       "@phpunit",
       "@phpcs",
