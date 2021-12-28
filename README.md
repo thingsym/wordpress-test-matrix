@@ -10,6 +10,7 @@ Testing compatibility between PHP versions and WordPress versions.
 * wp-theme-unit-test.yml
 * wp-plugin-deploy.yml
 * wp-plugin-trunk.yml
+* wp-plugin-unit-test-matrix.yml
 
 ### Travis CI (Deprecated)
 
