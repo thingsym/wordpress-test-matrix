@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [ $# -lt 3 ]; then
-	echo "usage: $0 <db-name> <db-user> <db-pass> [db-host] [wp-version]"
+	echo "usage: $0 <db-name> <db-user> <db-pass> [db-host] [wp-version] [skip-database-delete]"
 	exit 1
 fi
 
@@ -10,6 +10,7 @@ DB_USER=$2
 DB_PASS=$3
 DB_HOST=${4-localhost}
 WP_VERSION=${5-latest}
+SKIP_DB_DELETE=${6-false}
 
 TMPDIR=${TMPDIR-/tmp}
 TMPDIR=$(echo $TMPDIR | sed -e "s/\/$//")
@@ -41,6 +42,11 @@ delete_test_suite() {
 }
 
 drop_db() {
+
+	if [ ${SKIP_DB_DELETE} = "true" ]; then
+		return 0
+	fi
+
 	# parse DB_HOST for port or socket references
 	local PARTS=(${DB_HOST//\:/ })
 	local DB_HOSTNAME=${PARTS[0]};
