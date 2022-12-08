@@ -12,12 +12,6 @@ Testing compatibility between PHP versions and WordPress versions.
 * wp-plugin-trunk.yml
 * wp-plugin-unit-test-matrix.yml
 
-### Travis CI (Deprecated)
-
-* .travis.yml
-
-Note: With Travis CI, all build matrixes are currently limited to a maximum of **200** jobs. See [Travis CI Doc - Build Matrix](https://docs.travis-ci.com/user/build-matrix/)
-
 ## Unit Test Framework configuration and Lint ruleset
 
 A collection of Unit Test Framework configuration and Lint ruleset for developing WordPress theme/plugin
