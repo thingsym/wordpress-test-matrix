@@ -15,8 +15,8 @@ jobs:
 
       matrix:
         os: [ ubuntu-20.04 ]
-        php: [ '5.6', '7.0', '7.1', '7.2', '7.3', '7.4' ]
-        wordpress: [ '4.9', '5.0', '5.1', '5.2', '5.3', '5.4', '5.5', '5.6', '5.7', '5.8', latest, nightly ]
+        php: [ '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2' ]
+        wordpress: [ '5.0', '5.1', '5.2', '5.3', '5.4', '5.5', '5.6', '5.7', '5.8', '5.9', '6.0', '6.1', '6.2', latest, nightly ]
         multisite: [ 0 ]
         include:
           # Trying to access array offset on value of type bool on PHP 7.4
@@ -33,16 +33,64 @@ jobs:
             php: '7.4'
             wordpress: '5.1'
 
-          # compact(): Undefined variable: context
-          # WordPress 4.9.x does not support on PHP 7.3.0 later
-          # https://core.trac.wordpress.org/ticket/46449
-          - allow_failures: "true"
-            php: '7.4'
-            wordpress: '4.9'
+        exclude:
+          # PHP 8.0+ is not compatible with PHPUnit 7.x. on WordPress versions prior to 5.8 and should not be tested.
+          - php: '8.0'
+            wordpress: '5.8'
+          - php: '8.0'
+            wordpress: '5.7'
+          - php: '8.0'
+            wordpress: '5.6'
+          - php: '8.0'
+            wordpress: '5.5'
+          - php: '8.0'
+            wordpress: '5.4'
+          - php: '8.0'
+            wordpress: '5.3'
+          - php: '8.0'
+            wordpress: '5.2'
+          - php: '8.0'
+            wordpress: '5.1'
+          - php: '8.0'
+            wordpress: '5.0'
 
-          - allow_failures: "true"
-            php: '7.3'
-            wordpress: '4.9'
+          - php: '8.1'
+            wordpress: '5.8'
+          - php: '8.1'
+            wordpress: '5.7'
+          - php: '8.1'
+            wordpress: '5.6'
+          - php: '8.1'
+            wordpress: '5.5'
+          - php: '8.1'
+            wordpress: '5.4'
+          - php: '8.1'
+            wordpress: '5.3'
+          - php: '8.1'
+            wordpress: '5.2'
+          - php: '8.1'
+            wordpress: '5.1'
+          - php: '8.1'
+            wordpress: '5.0'
+
+          - php: '8.2'
+            wordpress: '5.8'
+          - php: '8.2'
+            wordpress: '5.7'
+          - php: '8.2'
+            wordpress: '5.6'
+          - php: '8.2'
+            wordpress: '5.5'
+          - php: '8.2'
+            wordpress: '5.4'
+          - php: '8.2'
+            wordpress: '5.3'
+          - php: '8.2'
+            wordpress: '5.2'
+          - php: '8.2'
+            wordpress: '5.1'
+          - php: '8.2'
+            wordpress: '5.0'
 
     env:
       PHP_VERSION: ${{ matrix.php }}
@@ -78,7 +126,9 @@ jobs:
       - name: Install PHPUnit
         run: |
           # for PHP Compatibility - https://phpunit.de/supported-versions.html
-          if [[ $PHP_VERSION == "7.0" ]] ; then
+          if [[ ${PHP_VERSION:0:1} == "8" ]] ; then
+            composer global require "phpunit/phpunit=8.*"
+          elif [[ $PHP_VERSION == "7.0" ]] ; then
             composer global require "phpunit/phpunit=5.7.*|6.*"
           # for WP_VERSION < 4.6 due to PHP Fatal error: Class 'PHPUnit_Framework_TestCase' not found
           elif [[ ${PHP_VERSION:0:1} == "7" ]] && [[ "$WP_VERSION" < 4.6* ]] ; then
@@ -97,5 +147,10 @@ jobs:
         run: bash bin/install-wp-tests.sh wordpress_test root root 0.0.0.0:3306 $WP_VERSION
 
       - name: Run PHPUnit - WordPress ${{ matrix.wordpress }} * Multisite ${{ matrix.multisite }}
-        run: phpunit
+        run: |
+          if [[ $PHP_VERSION == "5.6" ]] || [[ $PHP_VERSION == "7.0" ]] ; then
+            phpunit --configuration phpunit-legacy.xml
+          else
+            phpunit
+          fi
         continue-on-error: ${{ matrix.allow_failures == 'true' }}
