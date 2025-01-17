@@ -13,7 +13,7 @@ on:
 
 jobs:
   phpunit:
-    name: WordPress ${{ matrix.wordpress }} * PHP v${{ matrix.php }} * ${{ matrix.os }}
+    name: WordPress ${{ matrix.wordpress }} * PHP v${{ matrix.php }} * ${{ matrix.os }} * Multisite ${{ matrix.multisite }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 30
 
@@ -21,13 +21,15 @@ jobs:
       fail-fast: false
 
       matrix:
-        os: [ ubuntu-20.04 ]
-        php: [ '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2' ]
+        os: [ ubuntu-22.04 ]
+        php: [ '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3' ]
         wordpress: [ latest, nightly ]
+        multisite: [ 0 ]
 
     env:
       PHP_VERSION: ${{ matrix.php }}
       WP_VERSION: ${{ matrix.wordpress }}
+      WP_MULTISITE: ${{ matrix.multisite }}
 
     services:
       database:
@@ -38,22 +40,13 @@ jobs:
           MYSQL_ROOT_PASSWORD: root
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup PHP v${{ matrix.php }}
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
           extensions: mbstring, intl, php-mysql
-
-      - name: apt --fix-broken install for PHP 7.0
-        run: sudo apt --fix-broken install
-        if: ${{ matrix.php == '7.0' }}
-
-      - name: Install mbstring library for PHP 7.0
-        # require ext-mbstring * -> it is missing from your system. Install or enable PHP's mbstring extension.
-        run: sudo apt-get install php7.0-mbstring
-        if: ${{ matrix.php == '7.0' }}
 
       - name: Install PHPUnit
         run: |
@@ -73,12 +66,12 @@ jobs:
           fi
 
       - name: Install PHPUnit Polyfills library
-        run: composer global require "yoast/phpunit-polyfills=1.1.0"
+        run: composer global require "yoast/phpunit-polyfills=2.0"
 
       - name: Install wp tests
         run: bash bin/install-wp-tests.sh wordpress_test root root 0.0.0.0:3306 $WP_VERSION
 
-      - name: Run PHPUnit - WordPress ${{ matrix.wordpress }}
+      - name: Run PHPUnit - WordPress ${{ matrix.wordpress }} * Multisite ${{ matrix.multisite }}
         run: |
           if [[ $PHP_VERSION == "5.6" ]] || [[ $PHP_VERSION == "7.0" ]] ; then
             phpunit --configuration phpunit-legacy.xml
@@ -87,7 +80,7 @@ jobs:
           fi
 
   phpunit-legacy:
-    name: WordPress ${{ matrix.wordpress }} * PHP v${{ matrix.php }} * ${{ matrix.os }}
+    name: WordPress ${{ matrix.wordpress }} * PHP v${{ matrix.php }} * ${{ matrix.os }} * Multisite ${{ matrix.multisite }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 30
 
@@ -95,14 +88,16 @@ jobs:
       fail-fast: false
 
       matrix:
-        os: [ ubuntu-20.04 ]
+        os: [ ubuntu-22.04 ]
         # WordPress 6.3 or later requires at least 7.0.0
         php: [ '5.6' ]
         wordpress: [ '6.1', '6.2' ]
+        multisite: [ 0 ]
 
     env:
       PHP_VERSION: ${{ matrix.php }}
       WP_VERSION: ${{ matrix.wordpress }}
+      WP_MULTISITE: ${{ matrix.multisite }}
 
     services:
       database:
@@ -113,7 +108,7 @@ jobs:
           MYSQL_ROOT_PASSWORD: root
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup PHP v${{ matrix.php }}
         uses: shivammathur/setup-php@v2
@@ -139,10 +134,10 @@ jobs:
           fi
 
       - name: Install PHPUnit Polyfills library
-        run: composer global require "yoast/phpunit-polyfills=1.1.0"
+        run: composer global require "yoast/phpunit-polyfills=2.0"
 
       - name: Install wp tests
         run: bash bin/install-wp-tests.sh wordpress_test root root 0.0.0.0:3306 $WP_VERSION
 
-      - name: Run PHPUnit - WordPress ${{ matrix.wordpress }}
+      - name: Run PHPUnit - WordPress ${{ matrix.wordpress }} * Multisite ${{ matrix.multisite }}
         run: phpunit --configuration phpunit-legacy.xml
