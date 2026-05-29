@@ -60,15 +60,15 @@ jobs:
           if [[ ${PHP_VERSION:0:1} == "8" ]] ; then
             composer global require "phpunit/phpunit=9.*"
           elif [[ $PHP_VERSION == "7.0" ]] ; then
-            composer global require "phpunit/phpunit=5.7.*|6.*"
+            composer global require "phpunit/phpunit=5.*|6.*"
           # for WP_VERSION < 4.6 due to PHP Fatal error: Class 'PHPUnit_Framework_TestCase' not found
           elif [[ ${PHP_VERSION:0:1} == "7" ]] && [[ "$WP_VERSION" < 4.6* ]] ; then
-            composer global require "phpunit/phpunit=5.7.*"
+            composer global require "phpunit/phpunit=5.*"
           # for WP_VERSION < 5.0 due to Fatal error: Class PHPUnit_Util_Test may not inherit from final class (PHPUnit\Util\Test)
           elif [[ ${PHP_VERSION:0:1} == "7" ]] && [[ "$WP_VERSION" < 5.0* ]] ; then
-            composer global require "phpunit/phpunit=5.7.*|6.*"
+            composer global require "phpunit/phpunit=5.*|6.*"
           else
-            composer global require "phpunit/phpunit=4.8.*|5.4.*|5.7.*|6.*|7.*|8.*|9.*"
+            composer global require "phpunit/phpunit=4.*|5.*|6.*|7.*|8.*|9.*"
           fi
 
       - name: Install PHPUnit Polyfills library
@@ -127,19 +127,18 @@ jobs:
 
       - name: Install PHPUnit
         run: |
-          # for PHP Compatibility - https://phpunit.de/supported-versions.html
           if [[ ${PHP_VERSION:0:1} == "8" ]] ; then
-            composer global require "phpunit/phpunit=8.*"
+            composer global require "phpunit/phpunit=9.*"
           elif [[ $PHP_VERSION == "7.0" ]] ; then
-            composer global require "phpunit/phpunit=5.7.*|6.*"
+            composer global require "phpunit/phpunit=5.*|6.*"
           # for WP_VERSION < 4.6 due to PHP Fatal error: Class 'PHPUnit_Framework_TestCase' not found
           elif [[ ${PHP_VERSION:0:1} == "7" ]] && [[ "$WP_VERSION" < 4.6* ]] ; then
-            composer global require "phpunit/phpunit=5.7.*"
+            composer global require "phpunit/phpunit=5.*"
           # for WP_VERSION < 5.0 due to Fatal error: Class PHPUnit_Util_Test may not inherit from final class (PHPUnit\Util\Test)
           elif [[ ${PHP_VERSION:0:1} == "7" ]] && [[ "$WP_VERSION" < 5.0* ]] ; then
-            composer global require "phpunit/phpunit=5.7.*|6.*"
+            composer global require "phpunit/phpunit=5.*|6.*"
           else
-            composer global require "phpunit/phpunit=4.8.*|5.4.*|5.7.*|6.*|7.*"
+            composer global require "phpunit/phpunit=4.*|5.*|6.*|7.*|8.*|9.*"
           fi
 
       - name: Install PHPUnit Polyfills library
