@@ -43,7 +43,9 @@
   <rule ref="WordPress.WP.I18n">
     <properties>
       <!-- Value: replace the text domain used. -->
-      <property name="text_domain" type="array" value="your-theme-or-plugin-text-domain" />
+      <property name="text_domain" type="array">
+        <element value="YOUR-THEME-OR-PLUGIN-TEXT-DOMAIN"/>
+      </property>
     </properties>
   </rule>
 
