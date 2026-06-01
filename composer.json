@@ -39,7 +39,7 @@
     ],
     "makepot:wpcli": "wp i18n make-pot ./ ./languages/YOUR-THEME-OR-PLUGIN.pot --exclude=dist,bin,tests,node_modules,vendor",
     "msgmerge:ja": "msgmerge --update --backup off ./languages/YOUR-THEME-OR-PLUGIN-ja.po ./languages/YOUR-THEME-OR-PLUGIN.pot",
-    "makemo:ja": "wp i18n make-mo languages/YOUR-THEME-OR-PLUGIN.po languages/",
+    "makemo:ja": "wp i18n make-mo languages/YOUR-THEME-OR-PLUGIN-ja.po languages/",
     "msgfmt:ja": "msgfmt languages/YOUR-THEME-OR-PLUGIN-ja.po -o languages/YOUR-THEME-OR-PLUGIN-ja.mo"
   },
   "config": {
