@@ -168,7 +168,7 @@ jobs:
       matrix:
         os: [ ubuntu-24.04 ]
         php: [ '5.6', '7.1', '7.4' ]
-        wordpress: [ '4.7', '5.5' ]
+        wordpress: [ '4.7', '5.3', '5.5' ]
         multisite: [ 0 ]
 
         exclude:
